@@ -2,13 +2,13 @@
 
 **Status:** prepared, not tagged or published.
 
-Version 1.0.0 rebuilds the original prototype into a tested, typed and hardened application. The product is the same: a browser metronome with a practice log.
+Version 1.0.0 rebuilds the original prototype into a tested, typed application with explicit request limits. The product is the same: a browser metronome with a practice log.
 
 ## Highlights
 
-- **Steadier timing:** clicks are scheduled on the audio clock, and settings can change during playback.
-- **Real GraphQL handling:** operations are parsed and validated instead of matched by substring.
-- **Hardened API:** origin allow-list, request limits, rate limiting, timeouts and loopback binding by default.
+- **Audio-clock scheduling:** clicks are queued at exact audio timestamps, and settings can change during playback.
+- **Validated GraphQL:** operations are parsed and validated instead of matched by substring.
+- **API safeguards:** origin allow-list, request and query cost limits, rate limiting, timeouts and loopback binding by default.
 - **Modern stack:** React 19, strict TypeScript, Vite 8, Node.js 24 and Go 1.26.11.
 - **Tests and CI:** backend, frontend and schema suites, with results in `reports/tests/`.
 
@@ -16,7 +16,8 @@ Version 1.0.0 rebuilds the original prototype into a tested, typed and hardened 
 
 - Start the backend with `go run ./cmd/server` from `backend/`.
 - API clients must read the GraphQL `errors` array and send integers as JSON numbers.
-- Browser clients on other origins must be listed in `METRONOME_ALLOWED_ORIGINS`.
+- Browser clients on other origins must be listed in `METRONOME_ALLOWED_ORIGINS` as exact lowercase origins.
+- An operation may select `sessions` once and each session field once.
 
 ## Known limitations
 

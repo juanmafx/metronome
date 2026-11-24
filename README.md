@@ -8,14 +8,14 @@ A browser metronome with a practice log. The frontend generates click tracks wit
 
 Musicians improve tempo control by practicing deliberately and tracking what they did. This project combines both steps in one screen: set a tempo, practice to a steady click, then log the session with notes.
 
-It also serves as a compact reference for a typed React client talking to a hardened, dependency-light Go API.
+It is also a compact example of a typed React client talking to a small Go GraphQL API with explicit request limits.
 
 ## What it does
 
 - Plays a click at 30 to 300 BPM with 1 to 12 beats per bar.
 - Supports quarter, eighth, triplet and sixteenth subdivisions.
 - Offers four synthesized sounds (Click, Wood, Beep, Cowbell) and accents the first beat of each bar.
-- Schedules clicks on the audio clock, so timer jitter does not move them.
+- Schedules clicks on the audio clock with a 120 ms lookahead, so timer jitter inside that window does not move them.
 - Applies tempo, meter and sound changes while playing.
 - Saves practice sessions and lists them newest first.
 
@@ -62,7 +62,7 @@ Details and design decisions are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ## Quick start
 
-Requirements: Go 1.26.11 or newer, Node.js 24 (see `.nvmrc`), and `sqlite3` for the schema check.
+Requirements: Go 1.26.11 or newer, Node.js 24.15 or newer (`.nvmrc` pins 24.22.0), and `sqlite3` for the schema check.
 
 ```bash
 make install
@@ -100,6 +100,8 @@ curl -s http://127.0.0.1:8080/graphql \
   -d '{"query":"{ sessions { id bpm sound notes } }"}'
 ```
 
+An operation may select `sessions` once and each session field once, so aliases cannot multiply the size of a response.
+
 ## Configuration
 
 Backend environment variables:
@@ -107,7 +109,7 @@ Backend environment variables:
 | Variable | Default | Description |
 | --- | --- | --- |
 | `METRONOME_ADDR` | `127.0.0.1:8080` | Listen address |
-| `METRONOME_ALLOWED_ORIGINS` | Local Vite dev and preview origins | Comma-separated browser origins; wildcards are rejected |
+| `METRONOME_ALLOWED_ORIGINS` | Local Vite dev and preview origins | Comma-separated exact browser origins in lowercase; wildcards are rejected |
 | `METRONOME_RATE_LIMIT_PER_MINUTE` | `120` | GraphQL requests per client IP per minute |
 | `METRONOME_MAX_SESSIONS` | `1000` | Maximum sessions held in memory |
 
@@ -120,7 +122,7 @@ Frontend build variables (see `frontend/.env.example`):
 
 ## Database
 
-[db/schema.sql](db/schema.sql) is an **optional** SQLite schema that mirrors the domain rules as constraints. The running backend does not use it; it is the starting point for adding durable storage.
+[db/schema.sql](db/schema.sql) is an **optional** SQLite schema that mirrors the numeric ranges, allow-lists and notes length as constraints. The running backend does not use it; it is the starting point for adding durable storage.
 
 ```bash
 sqlite3 metronome.db < db/schema.sql
@@ -138,7 +140,7 @@ The latest committed results are in [reports/tests/SUMMARY.md](reports/tests/SUM
 
 ## Security
 
-The API enforces an origin allow-list, JSON-only requests, body and query limits, input validation and per-client rate limiting. The production frontend ships a strict Content Security Policy. See [SECURITY.md](SECURITY.md) and [docs/SECURITY_AUDIT.md](docs/SECURITY_AUDIT.md).
+The API enforces an origin allow-list, JSON-only requests, body and query cost limits, input validation and per-client rate limiting. It has no authentication. The production frontend ships a strict Content Security Policy. See [SECURITY.md](SECURITY.md) and [docs/SECURITY_AUDIT.md](docs/SECURITY_AUDIT.md).
 
 ## License
 

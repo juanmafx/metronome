@@ -11,6 +11,7 @@ import (
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"github.com/vektah/gqlparser/v2/parser"
 	"github.com/vektah/gqlparser/v2/validator"
+	"github.com/vektah/gqlparser/v2/validator/core"
 	"github.com/vektah/gqlparser/v2/validator/rules"
 )
 
@@ -53,7 +54,7 @@ func (e *Executor) Execute(req Request) Response {
 	if parseErr != nil {
 		return requestError("query could not be parsed")
 	}
-	if errs := validator.ValidateWithRules(schema, document, rules.NewDefaultRules()); len(errs) > 0 {
+	if errs := validator.ValidateWithRules(schema, document, newValidationRules()); len(errs) > 0 {
 		return requestError(errs[0].Message)
 	}
 
@@ -75,7 +76,7 @@ func (e *Executor) Execute(req Request) Response {
 	}
 
 	root := fieldGroups{}
-	collectFields(operation.SelectionSet, variables, root)
+	collectFields(operation.SelectionSet, variables, root, map[string]bool{})
 	if len(root) > maxRootFields {
 		return requestError(fmt.Sprintf("operations may select at most %d root fields", maxRootFields))
 	}
@@ -83,9 +84,14 @@ func (e *Executor) Execute(req Request) Response {
 		return requestError("mutations may select only one root field")
 	}
 
+	selections, message := planSelections(root, variables)
+	if message != "" {
+		return requestError(message)
+	}
+
 	data := make(map[string]any, len(root))
 	for alias, fields := range root {
-		value, err := e.resolveRoot(fields, variables)
+		value, err := e.resolveRoot(fields, selections[alias], variables)
 		if err != nil {
 			return executionError(err)
 		}
@@ -99,12 +105,55 @@ func (e *Executor) Execute(req Request) Response {
 	return Response{Data: encoded}
 }
 
-func (e *Executor) resolveRoot(fields []*ast.Field, variables map[string]any) (any, error) {
-	selection := fieldGroups{}
-	for _, field := range fields {
-		collectFields(field.SelectionSet, variables, selection)
+func newValidationRules() *rules.Rules {
+	validationRules := rules.NewDefaultRules()
+	for _, pair := range [][2]core.Rule{
+		{rules.FieldsOnCorrectTypeRule, rules.FieldsOnCorrectTypeRuleWithoutSuggestions},
+		{rules.KnownArgumentNamesRule, rules.KnownArgumentNamesRuleWithoutSuggestions},
+		{rules.KnownTypeNamesRule, rules.KnownTypeNamesRuleWithoutSuggestions},
+		{rules.ScalarLeafsRule, rules.ScalarLeafsRuleWithoutSuggestions},
+		{rules.ValuesOfCorrectTypeRule, rules.ValuesOfCorrectTypeRuleWithoutSuggestions},
+	} {
+		validationRules.ReplaceRule(pair[0].Name, pair[1].RuleFunc)
 	}
+	return validationRules
+}
 
+func planSelections(root fieldGroups, variables map[string]any) (map[string]fieldGroups, string) {
+	selections := make(map[string]fieldGroups, len(root))
+	listFields := 0
+	for alias, fields := range root {
+		if fields[0].Name == "sessions" {
+			listFields++
+		}
+		selection := fieldGroups{}
+		visited := map[string]bool{}
+		for _, field := range fields {
+			collectFields(field.SelectionSet, variables, selection, visited)
+		}
+		if selectsFieldTwice(selection) {
+			return nil, "operations may select each session field only once"
+		}
+		selections[alias] = selection
+	}
+	if listFields > 1 {
+		return nil, "operations may select sessions only once"
+	}
+	return selections, ""
+}
+
+func selectsFieldTwice(selection fieldGroups) bool {
+	seen := make(map[string]bool, len(selection))
+	for _, fields := range selection {
+		if seen[fields[0].Name] {
+			return true
+		}
+		seen[fields[0].Name] = true
+	}
+	return false
+}
+
+func (e *Executor) resolveRoot(fields []*ast.Field, selection fieldGroups, variables map[string]any) (any, error) {
 	switch fields[0].Name {
 	case "__typename":
 		return fields[0].ObjectDefinition.Name, nil
@@ -130,7 +179,7 @@ func (e *Executor) resolveRoot(fields []*ast.Field, variables map[string]any) (a
 	}
 }
 
-func collectFields(selections ast.SelectionSet, variables map[string]any, out fieldGroups) {
+func collectFields(selections ast.SelectionSet, variables map[string]any, out fieldGroups, visited map[string]bool) {
 	for _, selection := range selections {
 		switch node := selection.(type) {
 		case *ast.Field:
@@ -139,11 +188,12 @@ func collectFields(selections ast.SelectionSet, variables map[string]any, out fi
 			}
 		case *ast.InlineFragment:
 			if isIncluded(node.Directives, variables) {
-				collectFields(node.SelectionSet, variables, out)
+				collectFields(node.SelectionSet, variables, out, visited)
 			}
 		case *ast.FragmentSpread:
-			if isIncluded(node.Directives, variables) {
-				collectFields(node.Definition.SelectionSet, variables, out)
+			if isIncluded(node.Directives, variables) && !visited[node.Name] {
+				visited[node.Name] = true
+				collectFields(node.Definition.SelectionSet, variables, out, visited)
 			}
 		}
 	}

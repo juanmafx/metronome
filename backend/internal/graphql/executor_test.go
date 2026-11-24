@@ -3,6 +3,7 @@ package graphql
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strings"
 	"testing"
 	"time"
@@ -127,6 +128,67 @@ func TestLimitsQueryCost(t *testing.T) {
 	huge := "{ sessions { " + strings.Repeat("id ", maxQueryTokens) + "} }"
 	if response := executor.Execute(Request{Query: huge}); !response.IsRequestError() {
 		t.Fatal("token limit not enforced")
+	}
+}
+
+func TestRepeatedFragmentSpreadsAreCollectedOnce(t *testing.T) {
+	executor := newExecutor(10)
+	executor.Execute(Request{Query: createMutation, Variables: validVariables()})
+	const depth = 150
+	var query strings.Builder
+	query.WriteString("{ sessions { ...F0 } } ")
+	for i := range depth {
+		fmt.Fprintf(&query, "fragment F%d on Session { ...F%d ...F%d } ", i, i+1, i+1)
+	}
+	fmt.Fprintf(&query, "fragment F%d on Session { id }", depth)
+
+	done := make(chan Response, 1)
+	go func() { done <- executor.Execute(Request{Query: query.String()}) }()
+	select {
+	case response := <-done:
+		entry := decode(t, response)["sessions"].([]any)[0].(map[string]any)
+		if entry["id"] != float64(1) {
+			t.Fatalf("unexpected projection: %v", entry)
+		}
+	case <-time.After(5 * time.Second):
+		t.Fatal("fragment expansion is not bounded")
+	}
+}
+
+func TestRejectsAliasAmplification(t *testing.T) {
+	cases := map[string]string{
+		"repeated session field":  `{ sessions { first: notes second: notes } }`,
+		"repeated via fragment":   `{ sessions { first: notes ...Again } } fragment Again on Session { second: notes }`,
+		"repeated list field":     `{ first: sessions { id } second: sessions { id } }`,
+		"repeated mutation field": `mutation { createSession(bpm: 90, beatsPerBar: 4, sound: "Click") { first: notes second: notes } }`,
+	}
+	for name, query := range cases {
+		t.Run(name, func(t *testing.T) {
+			executor := newExecutor(10)
+			if response := executor.Execute(Request{Query: query}); !response.IsRequestError() {
+				t.Fatalf("amplifying query accepted: %s", response.Data)
+			}
+			if listed := decode(t, executor.Execute(Request{Query: `{ sessions { id } }`})); len(listed["sessions"].([]any)) != 0 {
+				t.Fatal("rejected mutation persisted data")
+			}
+		})
+	}
+}
+
+func TestValidationErrorsDoNotSuggestSchemaNames(t *testing.T) {
+	for _, query := range []string{
+		`{ sessionz { id } }`,
+		`{ sessions { bpn } }`,
+		`mutation { createSession(bpn: 90, beatsPerBar: 4, sound: "Click") { id } }`,
+		`query($a: Strin) { __typename }`,
+	} {
+		response := newExecutor(1).Execute(Request{Query: query})
+		if !response.IsRequestError() {
+			t.Fatalf("query %q should fail", query)
+		}
+		if strings.Contains(response.Errors[0].Message, "Did you mean") {
+			t.Fatalf("schema suggestion leaked: %s", response.Errors[0].Message)
+		}
 	}
 }
 

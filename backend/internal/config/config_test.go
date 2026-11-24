@@ -33,12 +33,15 @@ func TestLoadReadsOverrides(t *testing.T) {
 
 func TestLoadRejectsInvalidValues(t *testing.T) {
 	cases := map[string]map[string]string{
-		"address":         {"METRONOME_ADDR": "nonsense"},
-		"wildcard origin": {"METRONOME_ALLOWED_ORIGINS": "*"},
-		"origin path":     {"METRONOME_ALLOWED_ORIGINS": "https://a.test/path"},
-		"origin scheme":   {"METRONOME_ALLOWED_ORIGINS": "ftp://a.test"},
-		"rate limit":      {"METRONOME_RATE_LIMIT_PER_MINUTE": "0"},
-		"max sessions":    {"METRONOME_MAX_SESSIONS": "-1"},
+		"address":          {"METRONOME_ADDR": "nonsense"},
+		"wildcard origin":  {"METRONOME_ALLOWED_ORIGINS": "*"},
+		"wildcard host":    {"METRONOME_ALLOWED_ORIGINS": "https://*.a.test"},
+		"uppercase host":   {"METRONOME_ALLOWED_ORIGINS": "https://A.test"},
+		"uppercase scheme": {"METRONOME_ALLOWED_ORIGINS": "HTTPS://a.test"},
+		"origin path":      {"METRONOME_ALLOWED_ORIGINS": "https://a.test/path"},
+		"origin scheme":    {"METRONOME_ALLOWED_ORIGINS": "ftp://a.test"},
+		"rate limit":       {"METRONOME_RATE_LIMIT_PER_MINUTE": "0"},
+		"max sessions":     {"METRONOME_MAX_SESSIONS": "-1"},
 	}
 	for name, env := range cases {
 		t.Run(name, func(t *testing.T) {

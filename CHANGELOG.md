@@ -10,7 +10,8 @@ This project follows [Semantic Versioning](https://semver.org/) and the [Keep a 
 - The API now returns standard GraphQL `errors` instead of a single `error` field.
 - Integer arguments must be real integers; numeric strings and fractions are rejected.
 - `sound` and `subdivision` accept only the supported values.
-- The server binds to `127.0.0.1` and only allows configured browser origins.
+- The server binds to `127.0.0.1` and only allows configured browser origins, which must be exact and lowercase.
+- An operation may select `sessions` once and each session field once.
 - The seeded demo session was removed, and sessions are listed newest first.
 
 ### Added
@@ -30,6 +31,7 @@ This project follows [Semantic Versioning](https://semver.org/) and the [Keep a 
 ### Security
 
 - Added an origin allow-list, content-type enforcement, request limits, rate limiting, server timeouts, a production CSP and security headers. See [docs/SECURITY_AUDIT.md](docs/SECURITY_AUDIT.md).
+- Bounded fragment expansion and alias amplification in the GraphQL executor, and removed schema suggestions from validation errors.
 
 ### Removed
 
