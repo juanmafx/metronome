@@ -28,6 +28,7 @@ This is a self-review, not an independent penetration test.
 | Low | Third-party font loading exposed visitor IPs | System font stack |
 | Low | No browser hardening | Strict CSP in production builds, API security headers |
 | Low | `node_modules`, native binaries and build output were tracked | Removed from the tree and ignored |
+| Low | Removed dependencies and build output remained in git history | Resolved by the 2026-11-24 history rewrite, which kept only the 2026 modernization commits. A pattern search found no secrets; any secret that was ever published must still be treated as compromised |
 
 ## Verification
 
@@ -44,7 +45,6 @@ This is a self-review, not an independent penetration test.
 | Severity | Item | Status |
 | --- | --- | --- |
 | Medium | The API has no authentication | Accepted for local use; required before any network deployment |
-| Low | Removed dependencies and build output remain in git history | A pattern search found no secrets; rewriting history is an owner decision |
 | Low | Sessions are not persisted or encrypted at rest | By design; data exists only in process memory |
 | Low | A `<meta>` CSP cannot set `frame-ancestors` | The host must send it as a response header; see [SECURITY.md](../SECURITY.md) |
 | Low | Notes may contain Unicode bidirectional format characters, which can reorder how a note is displayed | Accepted for a single-user local log; rendered as inert text |

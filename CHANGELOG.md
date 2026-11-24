@@ -2,7 +2,14 @@
 
 This project follows [Semantic Versioning](https://semver.org/) and the [Keep a Changelog](https://keepachangelog.com/) format.
 
-## [1.0.0]
+## [1.0.1] - 2026-11-24
+
+### Documentation
+
+- Corrected the release notes and security audit to reflect the published 1.0.0 release and the rewritten repository history.
+- No code behaviour change.
+
+## [1.0.0] - 2026-11-24
 
 ### Breaking
 

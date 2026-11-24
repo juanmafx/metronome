@@ -1,21 +1,15 @@
-# Release Notes: v1.0.0
+# Release Notes: v1.0.1
 
-Version 1.0.0 rebuilds the original prototype into a tested, typed application with explicit request limits. The product is the same: a browser metronome with a practice log.
+Version 1.0.1 is a documentation-only release. It contains no code behaviour change from 1.0.0.
 
-## Highlights
+## Changes
 
-- **Audio-clock scheduling:** clicks are queued at exact audio timestamps, and settings can change during playback.
-- **Validated GraphQL:** operations are parsed and validated instead of matched by substring.
-- **API safeguards:** origin allow-list, request and query cost limits, rate limiting, timeouts and loopback binding by default.
-- **Modern stack:** React 19, strict TypeScript, Vite 8, Node.js 24 and Go 1.26.11.
-- **Tests and CI:** backend, frontend and schema suites, with results in `reports/tests/`.
+- The changelog dates the published 1.0.0 release.
+- The security audit marks the finding about removed dependencies and build output remaining in git history as resolved. On 2026-11-24 the public history was rewritten to keep only the 2026 modernization commits.
 
-## Upgrade notes
+## Upgrading
 
-- Start the backend with `go run ./cmd/server` from `backend/`.
-- API clients must read the GraphQL `errors` array and send integers as JSON numbers.
-- Browser clients on other origins must be listed in `METRONOME_ALLOWED_ORIGINS` as exact lowercase origins.
-- An operation may select `sessions` once and each session field once.
+No action is needed when upgrading from 1.0.0. For the changes introduced in 1.0.0, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Known limitations
 
