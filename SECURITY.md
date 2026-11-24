@@ -19,4 +19,5 @@ The API has **no authentication** and is designed for local use. It binds to `12
 
 - Put it behind an authenticating reverse proxy with TLS.
 - Set `METRONOME_ALLOWED_ORIGINS` to the exact production origins.
+- Serve the frontend with a `Content-Security-Policy: frame-ancestors 'none'` response header, because a `<meta>` CSP cannot set that directive.
 - Note that rate limiting keys on the connecting IP and ignores forwarded headers, so all traffic through a proxy shares one limit.

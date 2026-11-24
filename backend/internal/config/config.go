@@ -60,7 +60,8 @@ func parseOrigins(raw string) ([]string, error) {
 		origin := strings.TrimSpace(candidate)
 		parsed, err := url.Parse(origin)
 		if err != nil || (parsed.Scheme != "http" && parsed.Scheme != "https") || parsed.Host == "" ||
-			parsed.Path != "" || parsed.RawQuery != "" || parsed.Fragment != "" || parsed.User != nil {
+			parsed.Path != "" || parsed.RawQuery != "" || parsed.Fragment != "" || parsed.User != nil ||
+			strings.Contains(origin, "*") || origin != strings.ToLower(origin) {
 			return nil, fmt.Errorf("METRONOME_ALLOWED_ORIGINS contains an invalid origin: %q", origin)
 		}
 		origins = append(origins, origin)

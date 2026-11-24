@@ -4,22 +4,28 @@
 === RUN   TestLoadReadsOverrides
 --- PASS: TestLoadReadsOverrides (0.00s)
 === RUN   TestLoadRejectsInvalidValues
-=== RUN   TestLoadRejectsInvalidValues/rate_limit
-=== RUN   TestLoadRejectsInvalidValues/max_sessions
-=== RUN   TestLoadRejectsInvalidValues/address
 === RUN   TestLoadRejectsInvalidValues/wildcard_origin
+=== RUN   TestLoadRejectsInvalidValues/wildcard_host
+=== RUN   TestLoadRejectsInvalidValues/uppercase_scheme
+=== RUN   TestLoadRejectsInvalidValues/address
+=== RUN   TestLoadRejectsInvalidValues/uppercase_host
 === RUN   TestLoadRejectsInvalidValues/origin_path
 === RUN   TestLoadRejectsInvalidValues/origin_scheme
+=== RUN   TestLoadRejectsInvalidValues/rate_limit
+=== RUN   TestLoadRejectsInvalidValues/max_sessions
 --- PASS: TestLoadRejectsInvalidValues (0.00s)
-    --- PASS: TestLoadRejectsInvalidValues/rate_limit (0.00s)
-    --- PASS: TestLoadRejectsInvalidValues/max_sessions (0.00s)
-    --- PASS: TestLoadRejectsInvalidValues/address (0.00s)
     --- PASS: TestLoadRejectsInvalidValues/wildcard_origin (0.00s)
+    --- PASS: TestLoadRejectsInvalidValues/wildcard_host (0.00s)
+    --- PASS: TestLoadRejectsInvalidValues/uppercase_scheme (0.00s)
+    --- PASS: TestLoadRejectsInvalidValues/address (0.00s)
+    --- PASS: TestLoadRejectsInvalidValues/uppercase_host (0.00s)
     --- PASS: TestLoadRejectsInvalidValues/origin_path (0.00s)
     --- PASS: TestLoadRejectsInvalidValues/origin_scheme (0.00s)
+    --- PASS: TestLoadRejectsInvalidValues/rate_limit (0.00s)
+    --- PASS: TestLoadRejectsInvalidValues/max_sessions (0.00s)
 PASS
 coverage: 94.6% of statements
-ok  	github.com/juanmafx/metronome/backend/internal/config	1.031s	coverage: 94.6% of statements
+ok  	github.com/juanmafx/metronome/backend/internal/config	1.021s	coverage: 94.6% of statements
 === RUN   TestCreateThenListProjectsOnlySelectedFields
 --- PASS: TestCreateThenListProjectsOnlySelectedFields (0.00s)
 === RUN   TestEmptyListEncodesAsArray
@@ -37,7 +43,21 @@ ok  	github.com/juanmafx/metronome/backend/internal/config	1.031s	coverage: 94.6
 === RUN   TestIntrospectionIsDisabled
 --- PASS: TestIntrospectionIsDisabled (0.00s)
 === RUN   TestLimitsQueryCost
---- PASS: TestLimitsQueryCost (0.01s)
+--- PASS: TestLimitsQueryCost (0.00s)
+=== RUN   TestRepeatedFragmentSpreadsAreCollectedOnce
+--- PASS: TestRepeatedFragmentSpreadsAreCollectedOnce (0.03s)
+=== RUN   TestRejectsAliasAmplification
+=== RUN   TestRejectsAliasAmplification/repeated_mutation_field
+=== RUN   TestRejectsAliasAmplification/repeated_session_field
+=== RUN   TestRejectsAliasAmplification/repeated_via_fragment
+=== RUN   TestRejectsAliasAmplification/repeated_list_field
+--- PASS: TestRejectsAliasAmplification (0.00s)
+    --- PASS: TestRejectsAliasAmplification/repeated_mutation_field (0.00s)
+    --- PASS: TestRejectsAliasAmplification/repeated_session_field (0.00s)
+    --- PASS: TestRejectsAliasAmplification/repeated_via_fragment (0.00s)
+    --- PASS: TestRejectsAliasAmplification/repeated_list_field (0.00s)
+=== RUN   TestValidationErrorsDoNotSuggestSchemaNames
+--- PASS: TestValidationErrorsDoNotSuggestSchemaNames (0.00s)
 === RUN   TestRejectsBatchedMutationAliases
 --- PASS: TestRejectsBatchedMutationAliases (0.00s)
 === RUN   TestDomainValidationReturnsExecutionError
@@ -51,67 +71,67 @@ ok  	github.com/juanmafx/metronome/backend/internal/config	1.031s	coverage: 94.6
 === RUN   TestInternalErrorsAreNotLeaked
 --- PASS: TestInternalErrorsAreNotLeaked (0.00s)
 PASS
-coverage: 89.1% of statements
-ok  	github.com/juanmafx/metronome/backend/internal/graphql	1.065s	coverage: 89.1% of statements
+coverage: 91.2% of statements
+ok  	github.com/juanmafx/metronome/backend/internal/graphql	1.057s	coverage: 91.2% of statements
 === RUN   TestPostReturnsDataAndSecurityHeaders
---- PASS: TestPostReturnsDataAndSecurityHeaders (0.01s)
+--- PASS: TestPostReturnsDataAndSecurityHeaders (0.00s)
 === RUN   TestRejectsUntrustedOrigin
---- PASS: TestRejectsUntrustedOrigin (0.01s)
+--- PASS: TestRejectsUntrustedOrigin (0.00s)
 === RUN   TestPreflightAllowsTrustedOrigin
 --- PASS: TestPreflightAllowsTrustedOrigin (0.00s)
 === RUN   TestRejectsCrossSiteFormContentTypes
---- PASS: TestRejectsCrossSiteFormContentTypes (0.01s)
+--- PASS: TestRejectsCrossSiteFormContentTypes (0.00s)
 === RUN   TestRejectsWrongMethod
 --- PASS: TestRejectsWrongMethod (0.00s)
 === RUN   TestRejectsInvalidBodies
---- PASS: TestRejectsInvalidBodies (0.01s)
+--- PASS: TestRejectsInvalidBodies (0.00s)
 === RUN   TestRejectsOversizedBody
---- PASS: TestRejectsOversizedBody (0.52s)
+--- PASS: TestRejectsOversizedBody (0.51s)
 === RUN   TestInvalidQueryReturnsBadRequest
 --- PASS: TestInvalidQueryReturnsBadRequest (0.00s)
 === RUN   TestRateLimitReturns429
---- PASS: TestRateLimitReturns429 (0.01s)
+--- PASS: TestRateLimitReturns429 (0.00s)
 === RUN   TestForwardedHeaderDoesNotBypassRateLimit
---- PASS: TestForwardedHeaderDoesNotBypassRateLimit (0.01s)
+--- PASS: TestForwardedHeaderDoesNotBypassRateLimit (0.00s)
 === RUN   TestHealthEndpoint
 --- PASS: TestHealthEndpoint (0.00s)
 === RUN   TestRateLimiterWindowResets
 --- PASS: TestRateLimiterWindowResets (0.00s)
 === RUN   TestRateLimiterBoundsTrackedClients
---- PASS: TestRateLimiterBoundsTrackedClients (0.04s)
+--- PASS: TestRateLimiterBoundsTrackedClients (0.01s)
 === RUN   TestConcurrentRequests
---- PASS: TestConcurrentRequests (0.07s)
+--- PASS: TestConcurrentRequests (0.02s)
 PASS
 coverage: 98.9% of statements
-ok  	github.com/juanmafx/metronome/backend/internal/httpapi	1.717s	coverage: 98.9% of statements
+ok  	github.com/juanmafx/metronome/backend/internal/httpapi	1.559s	coverage: 98.9% of statements
 === RUN   TestNormalizeAcceptsBoundaries
 --- PASS: TestNormalizeAcceptsBoundaries (0.00s)
 === RUN   TestNormalizeAppliesDefaultsAndTrims
 --- PASS: TestNormalizeAppliesDefaultsAndTrims (0.00s)
 === RUN   TestNormalizeRejectsInvalidFields
-=== RUN   TestNormalizeRejectsInvalidFields/sound_missing
-=== RUN   TestNormalizeRejectsInvalidFields/sound_unknown
-=== RUN   TestNormalizeRejectsInvalidFields/bpm_high
-=== RUN   TestNormalizeRejectsInvalidFields/notes_too_long
-=== RUN   TestNormalizeRejectsInvalidFields/notes_control
 === RUN   TestNormalizeRejectsInvalidFields/bpm_low
+=== RUN   TestNormalizeRejectsInvalidFields/bpm_high
 === RUN   TestNormalizeRejectsInvalidFields/beats_low
-=== RUN   TestNormalizeRejectsInvalidFields/beats_high
 === RUN   TestNormalizeRejectsInvalidFields/minutes_low
 === RUN   TestNormalizeRejectsInvalidFields/minutes_high
 === RUN   TestNormalizeRejectsInvalidFields/subdivision
+=== RUN   TestNormalizeRejectsInvalidFields/sound_missing
+=== RUN   TestNormalizeRejectsInvalidFields/sound_unknown
+=== RUN   TestNormalizeRejectsInvalidFields/beats_high
+=== RUN   TestNormalizeRejectsInvalidFields/notes_too_long
+=== RUN   TestNormalizeRejectsInvalidFields/notes_control
 --- PASS: TestNormalizeRejectsInvalidFields (0.00s)
-    --- PASS: TestNormalizeRejectsInvalidFields/sound_missing (0.00s)
-    --- PASS: TestNormalizeRejectsInvalidFields/sound_unknown (0.00s)
-    --- PASS: TestNormalizeRejectsInvalidFields/bpm_high (0.00s)
-    --- PASS: TestNormalizeRejectsInvalidFields/notes_too_long (0.00s)
-    --- PASS: TestNormalizeRejectsInvalidFields/notes_control (0.00s)
     --- PASS: TestNormalizeRejectsInvalidFields/bpm_low (0.00s)
+    --- PASS: TestNormalizeRejectsInvalidFields/bpm_high (0.00s)
     --- PASS: TestNormalizeRejectsInvalidFields/beats_low (0.00s)
-    --- PASS: TestNormalizeRejectsInvalidFields/beats_high (0.00s)
     --- PASS: TestNormalizeRejectsInvalidFields/minutes_low (0.00s)
     --- PASS: TestNormalizeRejectsInvalidFields/minutes_high (0.00s)
     --- PASS: TestNormalizeRejectsInvalidFields/subdivision (0.00s)
+    --- PASS: TestNormalizeRejectsInvalidFields/sound_missing (0.00s)
+    --- PASS: TestNormalizeRejectsInvalidFields/sound_unknown (0.00s)
+    --- PASS: TestNormalizeRejectsInvalidFields/beats_high (0.00s)
+    --- PASS: TestNormalizeRejectsInvalidFields/notes_too_long (0.00s)
+    --- PASS: TestNormalizeRejectsInvalidFields/notes_control (0.00s)
 === RUN   TestNotesLimitCountsCharactersNotBytes
 --- PASS: TestNotesLimitCountsCharactersNotBytes (0.00s)
 === RUN   TestStoreListsNewestFirstAndAssignsIDs
@@ -124,4 +144,4 @@ ok  	github.com/juanmafx/metronome/backend/internal/httpapi	1.717s	coverage: 98.
 --- PASS: TestStoreConcurrentCreatesHaveUniqueIDs (0.00s)
 PASS
 coverage: 95.0% of statements
-ok  	github.com/juanmafx/metronome/backend/internal/session	1.035s	coverage: 95.0% of statements
+ok  	github.com/juanmafx/metronome/backend/internal/session	1.013s	coverage: 95.0% of statements

@@ -1,129 +1,129 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="56" failures="0" errors="0" time="1.294286386">
-    <testsuite name="src/app/App.test.tsx" timestamp="2026-11-24T02:05:33.392Z" tests="10" failures="0" errors="0" skipped="0" time="1.042325937">
-        <testcase classname="src/app/App.test.tsx" name="App &gt; renders stored sessions" time="0.342968321">
+<testsuites name="vitest tests" tests="56" failures="0" errors="0" time="0.540931683">
+    <testsuite name="src/app/App.test.tsx" timestamp="2026-11-24T03:11:32.575Z" tests="10" failures="0" errors="0" skipped="0" time="0.431698669">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; renders stored sessions" time="0.12001927">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; shows an empty state" time="0.027818018">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; shows an empty state" time="0.011516166">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; reports an unreachable server" time="0.031655978">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; reports an unreachable server" time="0.018142598">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; saves a session with numeric variables and clears notes" time="0.199260829">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; saves a session with numeric variables and clears notes" time="0.096697261">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; shows server validation errors and keeps the draft" time="0.153415447">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; shows server validation errors and keeps the draft" time="0.059565289">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; renders stored markup as inert text" time="0.029686503">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; renders stored markup as inert text" time="0.010703405">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; starts and stops audio" time="0.080374647">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; starts and stops audio" time="0.033621855">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; disables start for an invalid tempo" time="0.079681374">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; disables start for an invalid tempo" time="0.034279141">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; reports unavailable audio" time="0.047911099">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; reports unavailable audio" time="0.023223041">
         </testcase>
-        <testcase classname="src/app/App.test.tsx" name="App &gt; closes the audio context on unmount" time="0.0454354">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/app/contentSecurityPolicy.test.ts" timestamp="2026-11-24T02:05:33.396Z" tests="3" failures="0" errors="0" skipped="0" time="0.012063642">
-        <testcase classname="src/app/contentSecurityPolicy.test.ts" name="buildContentSecurityPolicy &gt; defaults to same-origin connections" time="0.005525914">
-        </testcase>
-        <testcase classname="src/app/contentSecurityPolicy.test.ts" name="buildContentSecurityPolicy &gt; allows only the origin of an absolute API URL" time="0.001036943">
-        </testcase>
-        <testcase classname="src/app/contentSecurityPolicy.test.ts" name="buildContentSecurityPolicy &gt; ignores relative API URLs" time="0.000843925">
+        <testcase classname="src/app/App.test.tsx" name="App &gt; closes the audio context on unmount" time="0.022240485">
         </testcase>
     </testsuite>
-    <testsuite name="src/features/metronome/domain/tempo.test.ts" timestamp="2026-11-24T02:05:33.397Z" tests="8" failures="0" errors="0" skipped="0" time="0.019214107">
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 60 BPM quarter" time="0.00540795">
+    <testsuite name="src/app/contentSecurityPolicy.test.ts" timestamp="2026-11-24T03:11:32.578Z" tests="3" failures="0" errors="0" skipped="0" time="0.004084809">
+        <testcase classname="src/app/contentSecurityPolicy.test.ts" name="buildContentSecurityPolicy &gt; defaults to same-origin connections" time="0.001973624">
         </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 120 BPM quarter" time="0.000567636">
+        <testcase classname="src/app/contentSecurityPolicy.test.ts" name="buildContentSecurityPolicy &gt; allows only the origin of an absolute API URL" time="0.000312044">
         </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 120 BPM eighth" time="0.000449878">
-        </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 60 BPM triplet" time="0.001246975">
-        </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 60 BPM sixteenth" time="0.000529688">
-        </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; counts steps per bar" time="0.001028361">
-        </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; accents only the first step of each bar" time="0.002477685">
-        </testcase>
-        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; maps subdivided steps to the containing beat" time="0.001372875">
+        <testcase classname="src/app/contentSecurityPolicy.test.ts" name="buildContentSecurityPolicy &gt; ignores relative API URLs" time="0.000218559">
         </testcase>
     </testsuite>
-    <testsuite name="src/features/metronome/hooks/useMetronome.test.ts" timestamp="2026-11-24T02:05:33.399Z" tests="3" failures="0" errors="0" skipped="0" time="0.065713887">
-        <testcase classname="src/features/metronome/hooks/useMetronome.test.ts" name="useMetronome &gt; starts a single scheduler when start is called twice during resume" time="0.049934086">
+    <testsuite name="src/features/metronome/domain/tempo.test.ts" timestamp="2026-11-24T03:11:32.579Z" tests="8" failures="0" errors="0" skipped="0" time="0.008858173">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 60 BPM quarter" time="0.002865478">
         </testcase>
-        <testcase classname="src/features/metronome/hooks/useMetronome.test.ts" name="useMetronome &gt; stays stopped when stop is called during resume" time="0.005482075">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 120 BPM quarter" time="0.000286755">
         </testcase>
-        <testcase classname="src/features/metronome/hooks/useMetronome.test.ts" name="useMetronome &gt; can start again after stopping during resume" time="0.005903651">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 120 BPM eighth" time="0.000241596">
         </testcase>
-    </testsuite>
-    <testsuite name="src/features/metronome/scheduler/beatScheduler.test.ts" timestamp="2026-11-24T02:05:33.400Z" tests="8" failures="0" errors="0" skipped="0" time="0.046724435">
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; plays the first click immediately on start" time="0.017007176">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 60 BPM triplet" time="0.000241361">
         </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; keeps exact spacing despite irregular polling" time="0.001917817">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; computes step length at 60 BPM sixteenth" time="0.000260632">
         </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; never schedules beyond the lookahead window" time="0.000850537">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; counts steps per bar" time="0.000438421">
         </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; cycles beats and accents across bars" time="0.004545468">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; accents only the first step of each bar" time="0.001248508">
         </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; recovers without a burst after the timer stalls" time="0.000854586">
-        </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; applies tempo changes to following steps" time="0.000705822">
-        </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; restarts the bar when the meter changes" time="0.002815354">
-        </testcase>
-        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; is idempotent on start and stops cleanly" time="0.002612228">
+        <testcase classname="src/features/metronome/domain/tempo.test.ts" name="tempo &gt; maps subdivided steps to the containing beat" time="0.000417382">
         </testcase>
     </testsuite>
-    <testsuite name="src/features/sessions/domain/sessionDraft.test.ts" timestamp="2026-11-24T02:05:33.402Z" tests="17" failures="0" errors="0" skipped="0" time="0.067907575">
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; parses valid values to numbers and trims notes" time="0.007000685">
+    <testsuite name="src/features/metronome/hooks/useMetronome.test.ts" timestamp="2026-11-24T03:11:32.579Z" tests="3" failures="0" errors="0" skipped="0" time="0.023677216">
+        <testcase classname="src/features/metronome/hooks/useMetronome.test.ts" name="useMetronome &gt; starts a single scheduler when start is called twice during resume" time="0.018106063">
         </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;&quot;" time="0.001098967">
+        <testcase classname="src/features/metronome/hooks/useMetronome.test.ts" name="useMetronome &gt; stays stopped when stop is called during resume" time="0.001970182">
         </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;29&quot;" time="0.00044171">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;301&quot;" time="0.000932494">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;12.5&quot;" time="0.000499805">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;-90&quot;" time="0.000649475">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;1e2&quot;" time="0.000405761">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;abc&quot;" time="0.000775618">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;99999&quot;" time="0.000544973">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects beats per bar 0" time="0.000708443">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects beats per bar 13" time="0.000322991">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects minutes &quot;-1&quot;" time="0.000356904">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects minutes &quot;301&quot;" time="0.000221008">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects minutes &quot;&quot;" time="0.000227903">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects unsupported sounds" time="0.000271524">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; enforces the notes limit" time="0.000555446">
-        </testcase>
-        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; formats dates in English and tolerates invalid input" time="0.046172145">
+        <testcase classname="src/features/metronome/hooks/useMetronome.test.ts" name="useMetronome &gt; can start again after stopping during resume" time="0.002081896">
         </testcase>
     </testsuite>
-    <testsuite name="src/shared/api/graphqlClient.test.ts" timestamp="2026-11-24T02:05:33.406Z" tests="7" failures="0" errors="0" skipped="0" time="0.040336803">
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; sends a JSON POST without credentials" time="0.019756075">
+    <testsuite name="src/features/metronome/scheduler/beatScheduler.test.ts" timestamp="2026-11-24T03:11:32.580Z" tests="8" failures="0" errors="0" skipped="0" time="0.014422345">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; plays the first click immediately on start" time="0.004892527">
         </testcase>
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; uses the configured endpoint" time="0.001547689">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; keeps exact spacing despite irregular polling" time="0.003879766">
         </testcase>
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; surfaces GraphQL errors" time="0.003957208">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; never schedules beyond the lookahead window" time="0.000407311">
         </testcase>
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; handles non-JSON responses" time="0.002026567">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; cycles beats and accents across bars" time="0.000744483">
         </testcase>
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; handles missing data" time="0.002321262">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; recovers without a burst after the timer stalls" time="0.00044682">
         </testcase>
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; reports network failures without leaking details" time="0.001277133">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; applies tempo changes to following steps" time="0.00030815">
         </testcase>
-        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; propagates caller aborts" time="0.002669943">
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; restarts the bar when the meter changes" time="0.000360655">
+        </testcase>
+        <testcase classname="src/features/metronome/scheduler/beatScheduler.test.ts" name="beatScheduler &gt; is idempotent on start and stops cleanly" time="0.00134988">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/features/sessions/domain/sessionDraft.test.ts" timestamp="2026-11-24T03:11:32.580Z" tests="17" failures="0" errors="0" skipped="0" time="0.036049395">
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; parses valid values to numbers and trims notes" time="0.004158649">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;&quot;" time="0.000454187">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;29&quot;" time="0.000172332">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;301&quot;" time="0.000363779">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;12.5&quot;" time="0.000174604">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;-90&quot;" time="0.000231327">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;1e2&quot;" time="0.00014714">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;abc&quot;" time="0.000147727">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects BPM &quot;99999&quot;" time="0.000190669">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects beats per bar 0" time="0.000283799">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects beats per bar 13" time="0.00018476">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects minutes &quot;-1&quot;" time="0.000190801">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects minutes &quot;301&quot;" time="0.000144376">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects minutes &quot;&quot;" time="0.000152998">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; rejects unsupported sounds" time="0.000168488">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; enforces the notes limit" time="0.000234793">
+        </testcase>
+        <testcase classname="src/features/sessions/domain/sessionDraft.test.ts" name="sessionDraft &gt; formats dates in English and tolerates invalid input" time="0.025842676">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/shared/api/graphqlClient.test.ts" timestamp="2026-11-24T03:11:32.582Z" tests="7" failures="0" errors="0" skipped="0" time="0.022141076">
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; sends a JSON POST without credentials" time="0.010827755">
+        </testcase>
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; uses the configured endpoint" time="0.000951267">
+        </testcase>
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; surfaces GraphQL errors" time="0.002330633">
+        </testcase>
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; handles non-JSON responses" time="0.001443423">
+        </testcase>
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; handles missing data" time="0.001388111">
+        </testcase>
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; reports network failures without leaking details" time="0.000888562">
+        </testcase>
+        <testcase classname="src/shared/api/graphqlClient.test.ts" name="graphqlClient &gt; propagates caller aborts" time="0.001433985">
         </testcase>
     </testsuite>
 </testsuites>
