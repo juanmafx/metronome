@@ -2,7 +2,7 @@
 
 This project follows [Semantic Versioning](https://semver.org/) and the [Keep a Changelog](https://keepachangelog.com/) format.
 
-## [1.0.0] - Unreleased
+## [1.0.0]
 
 ### Breaking
 
