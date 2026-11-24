@@ -1,0 +1,14 @@
+PASS accept: minimal row with defaults
+PASS accept: schema is idempotent
+PASS accept: boundary values
+PASS reject: bpm below range
+PASS reject: bpm above range
+PASS reject: beats below range
+PASS reject: beats above range
+PASS reject: unknown sound
+PASS reject: unknown subdivision
+PASS reject: duration above range
+PASS reject: notes too long
+PASS reject: malformed timestamp
+PASS reject: non-integer bpm
+All schema checks passed
