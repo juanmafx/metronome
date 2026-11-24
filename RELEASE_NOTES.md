@@ -1,7 +1,5 @@
 # Release Notes: v1.0.0
 
-**Status:** prepared, not tagged or published.
-
 Version 1.0.0 rebuilds the original prototype into a tested, typed application with explicit request limits. The product is the same: a browser metronome with a practice log.
 
 ## Highlights
